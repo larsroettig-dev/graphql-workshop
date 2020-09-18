@@ -1,22 +1,21 @@
 {
-    "name": "lars-roettig/store-pickup-graphql",
-    "version": "1.0.0",
-    "description": "N/A",
-    "type": "magento2-module",
-    "require": {
-        "magento/framework": "*",
-        "lars-roettig/store-pickup": "*"
-    },
-    "license": [
-        "Proprietary"
+  "name": "lars-roettig/store-pickup-graphql",
+  "version": "1.0.0",
+  "description": "N/A",
+  "type": "magento2-module",
+  "require": {
+    "magento/framework": "*",
+    "lars-roettig/store-pickup": "1.0.*"
+  },
+  "license": [
+    "Proprietary"
+  ],
+  "autoload": {
+    "files": [
+      "registration.php"
     ],
-    "autoload": {
-        "files": [
-            "registration.php"
-        ],
-        "psr-4": {
-            "LarsRoettig\\StorePickupGraphQL\\": ""
-        }
+    "psr-4": {
+      "LarsRoettig\\StorePickupGraphQL\\": ""
     }
+  }
 }
-LarsRoettig\\StorePickupGraphQL\\Api\\StoreRepositoryInterface
