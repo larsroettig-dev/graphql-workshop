@@ -11,11 +11,11 @@ type PickUpStore
 }
 
 type PickUpStoresOutput {
-    totalCount : Int @doc(description: "")
+    totalCount: Int @doc(description: "")
     items: [PickUpStore] @doc(description: "")
 }
 
-input PickupStoresFilterInput{
+input PickupStoresFilterInput {
     id: FilterTypeInput @doc(description: "")
     name: FilterTypeInput @doc(description: "")
     street: FilterTypeInput @doc(description: "")
@@ -26,10 +26,28 @@ input PickupStoresFilterInput{
     longitude: FilterTypeInput @doc(description: "")
 }
 
-
 type Query {
     pickUpStores(
+        filter: PickupStoresFilterInput @doc(description: "How many items should show on the page")
         pageSize: Int = 5 @doc(description: "How many items should show on the page")
         currentPage: Int = 1 @doc(description: "Allows to ussing paging it start with 1")
-    ):PickUpStoresOutput @resolver( class: "\\LarsRoettig\\StorePickupGraphQL\\Model\\Resolver\\PickUpStores") @doc(description: "The Impelemention to resolve PickUp stores")
+    ):PickUpStoresOutput
+    @resolver( class: "\\LarsRoettig\\StorePickupGraphQL\\Model\\Resolver\\Query\\PickUpStores")
+    @doc(description: "The Impelemention to resolve PickUp stores")
+}
+
+input PickUpStoreInput {
+    name: String @doc(description: "")
+    street: String @doc(description: "")
+    streetNumber: String @doc(description: "")
+    postCode: String @doc(description: "")
+    city: String @doc(description: "")
+    latitude: Float @doc(description: "")
+    longitude: Float @doc(description: "")
+}
+
+type Mutation {
+    createPickUpStores(input:PickUpStoreInput!):PickUpStoresOutput
+    @resolver( class: "\\LarsRoettig\\StorePickupGraphQL\\Model\\Resolver\\Mutation\\CreatePickUpStores")
+    @doc(description: "The Impelemention to resolve PickUp stores")
 }

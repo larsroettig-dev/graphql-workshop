@@ -92,9 +92,6 @@ class Store extends AbstractExtensibleModel implements StoreInterface
         $this->setData(self::LONGITUDE, $longitude);
     }
 
-    /**
-     * @inheritdoc
-     */
     public function getExtensionAttributes(): ExtensionAttributesInterface
     {
         $extensionAttributes = $this->_getExtensionAttributes();
@@ -105,12 +102,8 @@ class Store extends AbstractExtensibleModel implements StoreInterface
         return $extensionAttributes;
     }
 
-    /**
-     * @inheritdoc
-     */
     public function setExtensionAttributes(ExtensionAttributesInterface $extensionAttributes): void
     {
         $this->_setExtensionAttributes($extensionAttributes);
     }
-
 }

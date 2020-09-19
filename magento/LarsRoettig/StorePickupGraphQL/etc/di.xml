@@ -1,10 +1,42 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
-    <type name="\LarsRoettig\StorePickupGraphQL\Model\Validator\Chain">
+
+    <virtualType name="\LarsRoettig\StorePickupGraphQL\Model\Validator\ChainQuery"
+                 type="\LarsRoettig\StorePickupGraphQL\Model\Validator\Chain">
         <arguments>
             <argument name="validatorList" xsi:type="array">
-                <item name="pageValidator" xsi:type="object">\LarsRoettig\StorePickupGraphQL\Model\Validator\Page</item>
+                <item name="pageValidator" xsi:type="object">
+                    \LarsRoettig\StorePickupGraphQL\Model\Validator\Query\Page
+                </item>
+            </argument>
+        </arguments>
+    </virtualType>
+
+    <virtualType name="\LarsRoettig\StorePickupGraphQL\Model\Validator\ChainMutation"
+                 type="\LarsRoettig\StorePickupGraphQL\Model\Validator\Chain">
+        <arguments>
+            <argument name="validatorList" xsi:type="array">
+                <item name="pickUpStoresArgs" xsi:type="object">
+                    \LarsRoettig\StorePickupGraphQL\Model\Validator\Mutation\PickUpStoresArgs
+                </item>
+            </argument>
+        </arguments>
+    </virtualType>
+
+
+    <type name="LarsRoettig\StorePickupGraphQL\Model\Resolver\Query\PickUpStores">
+        <arguments>
+            <argument name="validatorChain" xsi:type="object">LarsRoettig\StorePickupGraphQL\Model\Validator\ChainQuery</argument>
+        </arguments>
+    </type>
+
+    <type name="Magento\Framework\GraphQl\Query\Resolver\Argument\FieldEntityAttributesPool">
+        <arguments>
+            <argument name="attributesInstances" xsi:type="array">
+                <item name="pickup_stores" xsi:type="object">
+                    \LarsRoettig\StorePickupGraphQL\Model\Resolver\FilterArgument
+                </item>
             </argument>
         </arguments>
     </type>
